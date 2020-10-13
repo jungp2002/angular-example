@@ -1,1 +1,4 @@
-<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)"></app-simple-table>
+<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" ></app-simple-table>
+<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-dark'" ></app-simple-table>
+<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [tableStyle]="'table-striped'" [headerStyle]="'thead-dark'"></app-simple-table>
+<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [tableStyle]="'table-striped'"></app-simple-table>

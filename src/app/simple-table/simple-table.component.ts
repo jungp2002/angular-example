@@ -1,8 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
+export interface NameValue {
+  name: string;
+  value: string
+}
 export interface AppNativeID {
   title?: string;
-  headers?: string[];
+  headers?: NameValue[];
 }
 
 export interface Columns {
@@ -25,6 +29,8 @@ export class SimpleTableComponent implements OnInit, OnChanges {
 
   @Input() source: any[];
   @Input() settings: Settings;
+  @Input() tableStyle;
+  @Input() headerStyle;
   @Output() rowSelectedEvent: EventEmitter<any> = new EventEmitter<any>();
 
   tableData: any[];
@@ -57,9 +63,24 @@ export class SimpleTableComponent implements OnInit, OnChanges {
     return tableData
   }
 
-  sort(colIndex) {
-    console.log(colIndex);
+  sort(col, sortDirection) {
+    this.tableData.sort( (a, b) => {
+      if (a.row[col] > b.row[col]) {
+        if (sortDirection === 'down') {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else {
+        if (sortDirection === 'down') {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+    });
   }
+
 
   userSelectRow(data) {
     this.rowSelectedEvent.emit(data);

@@ -13,7 +13,24 @@ export class AppComponent {
     columns: {
       appNativeID: {
         title: 'New Employees',
-        headers:  ['First Name', 'Last Name', 'Prefix', 'Age'] 
+        headers:  [
+          {
+            name: 'firstName',
+            value: 'First Name'
+          },
+          {
+            name: 'lastName',
+            value: 'Last Name'
+          },
+          {
+            name: 'prefix',
+            value: 'Prefix'
+          },
+          {
+            name: 'age',
+            value: 'Age'
+          }
+        ] 
       }
     },
     hideHeader: false
