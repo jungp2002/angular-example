@@ -1,0 +1,30 @@
+<div class="table-container">
+    <div *ngIf="!settings?.hideHeader" class="d-flex justify-content-center title">{{settings.columns.appNativeID.title}}</div>
+    <ng-container *ngIf="tableData">
+        <table class="table">
+            <thead>
+                <tr>
+                    <ng-container *ngFor="let col of settings.columns.appNativeID.headers; index as i">
+                        <th scope="col" (click)="sort(i)">{{ col }}</th>
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let rowData of tableData">
+                    <tr (click)="userSelectRow(rowData.row)">
+                        <ng-container *ngFor="let col of rowData.newRow">
+                            <td>
+                                {{ col }}
+                            </td>
+    
+                        </ng-container>
+                    </tr>
+    
+                </ng-container>
+            </tbody>
+        </table>
+    
+    </ng-container>
+</div>
+
+
