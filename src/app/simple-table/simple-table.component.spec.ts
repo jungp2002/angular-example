@@ -21,27 +21,32 @@ const settings2: Settings = {
       headers:  [
         {
           name: 'firstName',
-          value: 'First Name'
+          value: 'First Name',
+          isFilter: false,
         },
         {
           name: 'lastName',
-          value: 'Last Name'
+          value: 'Last Name',
+          isFilter: false,
         },
         {
           name: 'prefix',
-          value: 'Prefix'
+          value: 'Prefix',
+          isFilter: true,
         },
         {
           name: 'age',
-          value: 'Age'
+          value: 'Age',
+          isFilter: true
         }
       ] 
     }
   },
-  hideHeader: false
+  hideHeader: false,
+  isFilter: true
 };
 
-const source2 = [
+const   source2 = [
   {
     firstName: 'Jung',
     lastName: 'Paek',
@@ -59,6 +64,42 @@ const source2 = [
     lastName: 'Keys',
     prefix: 'Ms.',
     age: 21
+  },
+  {
+    firstName: 'Serious',
+    lastName: 'Kaeley',
+    prefix: 'Mr.',
+    age: 51
+  },
+  {
+    firstName: 'Sangre',
+    lastName: 'Manmoek',
+    prefix: 'Ms.',
+    age: 32
+  },
+  {
+    firstName: 'Raymond',
+    lastName: 'James',
+    prefix: 'Mr.',
+    age: 48
+  },
+  {
+    firstName: 'Renault',
+    lastName: 'De Leon',
+    prefix: 'Mr.',
+    age: 33
+  },
+  {
+    firstName: 'Sonia',
+    lastName: 'Chun',
+    prefix: 'Ms.',
+    age: 11
+  },
+  {
+    firstName: 'Simon',
+    lastName: 'St. James',
+    prefix: 'Mr.',
+    age: 76
   }
 ];
 
@@ -144,5 +185,19 @@ fdescribe('SimpleTableComponent', () => {
     expect(elements.length).toBe(0);
   });
 
+  it('should have filter row', () => {
+    const elements = fixture.debugElement.queryAll(By.css('.filter-input'));
+    expect(elements.length).toBe(2);
+  });
+
+  it('should filter data by column', () => {
+    const result = component.filter(source2, 'lastName', 'k');
+    console.log(result);
+    expect(result.length).toBe(2);
+  });
+
+  it('should filter data when key pressed', () => {
+    
+  })
 
 });

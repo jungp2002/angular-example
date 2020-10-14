@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 
 export interface NameValue {
   name: string;
-  value: string
+  value: string;
+  isFilter?: boolean;
 }
 export interface AppNativeID {
   title?: string;
@@ -18,6 +19,7 @@ export interface Settings {
   columns: Columns;
   hideHeader?: boolean;
   hideSubHeader?: boolean;
+  isFilter: boolean;
 }
 
 @Component({
@@ -31,6 +33,7 @@ export class SimpleTableComponent implements OnInit, OnChanges {
   @Input() settings: Settings;
   @Input() tableStyle;
   @Input() headerStyle;
+  @Input() maxHeight = 10;
   @Output() rowSelectedEvent: EventEmitter<any> = new EventEmitter<any>();
 
   tableData: any[];
@@ -79,6 +82,31 @@ export class SimpleTableComponent implements OnInit, OnChanges {
         }
       }
     });
+  }
+
+  filter(source, col, value) {
+    let toReturn = [];
+    if (source && col && value) {
+      source.forEach( row => {
+        const colData = row[col] + '';
+        if (colData.toUpperCase().startsWith(value.toUpperCase())) {
+          toReturn.push(row);
+        }
+      });
+    }
+    return toReturn;
+  }
+
+  filterAndSort(col, value) {
+
+  }
+
+  filterKeyUp(event, col) {
+    if (event.target.value === '') {
+      this.tableData = this.addRowData(this.source);
+    } else {
+      this.tableData = this.addRowData(this.filter(this.source, col, event.target.value));
+    }
   }
 
 

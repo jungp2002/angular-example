@@ -1,5 +1,4 @@
 .table-container {
-    margin-top: 1rem;
     padding: 1rem;
 }
 
@@ -11,4 +10,17 @@
 
 .clickable {
     cursor: pointer;
+}
+
+.table-fixed-head {
+  overflow-y: auto;
+}
+
+.table-fixed-head thead th {
+  position: sticky;
+  top: 0;
+}
+
+.filter-input {
+  max-width: 5rem;
 }

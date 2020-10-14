@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimpleTableComponent } from './simple-table/simple-table.component';
+import { PagingTableComponent } from './paging-table/paging-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleTableComponent
+    SimpleTableComponent,
+    PagingTableComponent
   ],
   imports: [
     BrowserModule,
