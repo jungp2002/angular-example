@@ -37,6 +37,11 @@ export class SimpleTableComponent implements OnInit, OnChanges {
   @Output() rowSelectedEvent: EventEmitter<any> = new EventEmitter<any>();
 
   tableData: any[];
+  filterMap = {};
+
+  currentSortColumn;
+  currentSortDirection;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -67,6 +72,9 @@ export class SimpleTableComponent implements OnInit, OnChanges {
   }
 
   sort(col, sortDirection) {
+    this.currentSortColumn = col;
+    this.currentSortDirection = sortDirection;
+
     this.tableData.sort( (a, b) => {
       if (a.row[col] > b.row[col]) {
         if (sortDirection === 'down') {
@@ -97,15 +105,31 @@ export class SimpleTableComponent implements OnInit, OnChanges {
     return toReturn;
   }
 
-  filterAndSort(col, value) {
-
-  }
-
   filterKeyUp(event, col) {
-    if (event.target.value === '') {
+    this.filterMap[col] = event.target.value;
+    let isFilterEmpty = true;
+    const keys = Object.keys(this.filterMap);
+    let filteredSource = this.source;
+
+    /**
+     * Go through all the filter fields and apply the filter to all of them
+     */
+    for (const key of keys) {
+      if (this.filterMap[key] !== '') {
+        console.log(key);
+        isFilterEmpty = false;
+        filteredSource = this.filter(filteredSource, key, this.filterMap[key])
+      }
+    }
+
+    if (isFilterEmpty) {
       this.tableData = this.addRowData(this.source);
     } else {
-      this.tableData = this.addRowData(this.filter(this.source, col, event.target.value));
+      this.tableData = this.addRowData(filteredSource);
+    }
+    
+    if (this.currentSortColumn) {
+      this.sort(this.currentSortColumn, this.currentSortDirection);
     }
   }
 

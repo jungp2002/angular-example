@@ -1,32 +1,75 @@
-<h3>
-  Demonstration of SimpleTable
-</h3>
-<ul>
-  <li>
-    Automatically expands columns
-  </li>
-  <li>
-    Sticky table header with vertical scroll
-  </li>
-  <li>
-    Sort by single column
-  </li>
-  <li>
-    Filter by single column (multiple column filter in the future)
-  </li>
-  <li>
-    Optional title
-  </li>
-  <li>
-    Optional filter fields
-  </li>
-  <li>
-    Optional table height
-  </li>
-</ul>
-<hr>
 
-<app-simple-table [source]="source2" [settings]="settings1" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-light'" [maxHeight]="20"></app-simple-table>
-<app-simple-table [source]="source2" [settings]="settings1" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-dark'" [maxHeight]="15"></app-simple-table>
-<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-dark'" [maxHeight]="32" [tableStyle]="'table-striped'"></app-simple-table>
-<app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-light'" [maxHeight]="25" [tableStyle]="'table-striped'"></app-simple-table>
+<div class="m-3">
+  <ul class="mt-3 mb-3 nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': simpleTableActive}" (click)="simpleTableActive=true;pagingTableActive=false;">Simple Table</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [ngClass]="{'active': pagingTableActive}" (click)="simpleTableActive=false;pagingTableActive=true;">Paging Table</a>
+    </li>
+  </ul>
+  <ng-container *ngIf="simpleTableActive">
+    <h3>
+      Demonstration of SimpleTable
+    </h3>
+    <ul>
+      <li>
+        Automatically expands columns
+      </li>
+      <li>
+        Sticky table header with vertical scroll
+      </li>
+      <li>
+        Sort by single column
+      </li>
+      <li>
+        Multiple column filters ( and condition filter )
+      </li>
+      <li>
+        Optional title
+      </li>
+      <li>
+        Optional filter fields
+      </li>
+      <li>
+        Optional table height
+      </li>
+    </ul>
+    <hr>
+    
+    <app-simple-table [source]="source2" [settings]="settings1" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-light'" [maxHeight]="20"></app-simple-table>
+    <app-simple-table [source]="source2" [settings]="settings1" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-dark'" [maxHeight]="15"></app-simple-table>
+    <app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-dark'" [maxHeight]="32" [tableStyle]="'table-striped'"></app-simple-table>
+    <app-simple-table [source]="source2" [settings]="settings2" (rowSelectedEvent)="userSelected($event)" [headerStyle]="'thead-light'" [maxHeight]="25" [tableStyle]="'table-striped'"></app-simple-table>
+  </ng-container>
+  <ng-container *ngIf="pagingTableActive">
+    <h3>
+      Demonstration of PagingTable
+
+    </h3>
+    <ul>
+      <li>
+        Automatically expands columns
+      </li>
+      <li>
+        Sort by single column
+      </li>
+      <li>
+        Filter by single column (multiple column filter in the future)
+      </li>
+      <li>
+        Optional title
+      </li>
+      <li>
+        Optional filter fields
+      </li>
+      <li>
+        Optional table height
+      </li>
+      <li>
+        Dynamic paging based on table height
+      </li>
+    </ul>
+    <hr>
+  </ng-container>
+</div>

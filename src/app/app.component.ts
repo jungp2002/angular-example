@@ -109,7 +109,7 @@ export class AppComponent {
       firstName: 'Raymond',
       lastName: 'James',
       prefix: 'Mr.',
-      age: 48
+      age: 51
     },
     {
       firstName: 'Renault',
@@ -121,7 +121,7 @@ export class AppComponent {
       firstName: 'Sonia',
       lastName: 'Chun',
       prefix: 'Ms.',
-      age: 11
+      age: 51
     },
     {
       firstName: 'Simon',
@@ -130,6 +130,9 @@ export class AppComponent {
       age: 76
     }
   ];
+
+  simpleTableActive = true;
+  pagingTableActive = false;
 
   userSelected($event) {
     console.log($event);
